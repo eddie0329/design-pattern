@@ -21,8 +21,8 @@ export class FormBuilder {
         return this.h(TextInput, {
           class: { input: true },
           props: {
-            type: "number",
-            rules: "even",
+            type: f.type,
+            rules: f.rules,
             placeholder: f.name,
             name: f.name,
             inputValue: this.self[this.getTypes(f.name)],
@@ -67,7 +67,10 @@ export class FormBuilder {
 export class FormDirector {
   makeUserSignIn(builder) {
     builder
-      .setFields([{ name: "Username" }, { name: "Password", type: "password" }])
+      .setFields([
+        { name: "Username", rules: "required|min:6|max:15" },
+        { name: "Password", rules: "required|min6", type: "password" },
+      ])
       .setSubmit("Sign in");
   }
 }

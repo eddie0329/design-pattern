@@ -1,6 +1,6 @@
 <template>
   <ValidationProvider :rules="rules" v-slot="{ errors }">
-    <input v-model="innerValue" :type="type" :placeholder="placeholder" />
+    <input v-model="innerValue" :type="type" :name="name" :placeholder="placeholder" />
     <span>{{ errors[0] }}</span>
   </ValidationProvider>
 </template>
