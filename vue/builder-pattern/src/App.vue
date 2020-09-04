@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <FormBuilder formMethod="makeUserSignIn" />
+    <ValidationObserver v-slot="{ passes }">
+      <FormBuilder form-method="makeUserSignIn" :validation-method="passes" />
+    </ValidationObserver>
   </div>
 </template>
 

@@ -1,3 +1,5 @@
+import TextInput from "../components/TextInput";
+
 export class FormBuilder {
   constructor(h, self) {
     this.h = h;
@@ -16,17 +18,18 @@ export class FormBuilder {
   setFields(fields) {
     this.fields.push(
       fields.map((f) => {
-        return this.h("input", {
+        return this.h(TextInput, {
           class: { input: true },
-          domProps: {
-            type: f.type || "text",
+          props: {
+            type: "number",
+            rules: "even",
             placeholder: f.name,
             name: f.name,
-            value: this.self[this.getTypes(f.name)],
+            inputValue: this.self[this.getTypes(f.name)],
           },
           on: {
-            input: (event) => {
-              this.self[this.getTypes(f.name)] = event.target.value;
+            input: (value) => {
+              this.self[this.getTypes(f.name)] = value;
             },
           },
         });
@@ -45,14 +48,14 @@ export class FormBuilder {
     return this;
   }
 
-  getForm(submitFunc) {
+  getForm(submitFunc, validationMethod) {
     return this.h(
       "form",
       {
         on: {
           submit: (event) => {
             event.preventDefault();
-            submitFunc();
+            validationMethod(submitFunc);
           },
         },
       },

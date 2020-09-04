@@ -8,7 +8,7 @@ import {
 import { FormDirector, FormBuilder } from "../builder/FormBuilder";
 
 export default {
-  props: ["formMethod"],
+  props: ["formMethod", "validationMethod"],
   computed: {
     ...mapState("formInputs", ["inputUsername", "inputPassword"]),
     getSubmitTypesFunc() {
@@ -48,7 +48,7 @@ export default {
     const director = new FormDirector();
     const builder = new FormBuilder(h, self);
     director[this.formMethod](builder);
-    return builder.getForm(this.getSubmitTypesFunc);
+    return builder.getForm(this.getSubmitTypesFunc, this.validationMethod);
   },
 };
 </script>
