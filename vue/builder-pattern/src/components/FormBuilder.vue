@@ -5,7 +5,8 @@ import {
   SET_INPUT_PASSWORD,
   SIGN_IN_USER,
 } from "../store/modules/formInputs";
-import { FormDirector, FormBuilder } from "../builder/FormBuilder";
+import FormBuilder from "../builder/FormBuilder";
+import FormDirector from "../director/FormDirector";
 
 export default {
   props: ["formMethod", "validationMethod"],

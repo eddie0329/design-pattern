@@ -1,6 +1,6 @@
 import TextInput from "../components/TextInput";
 
-export class FormBuilder {
+export default class FormBuilder {
   constructor(h, self) {
     this.h = h;
     this.fields = [];
@@ -61,16 +61,5 @@ export class FormBuilder {
       },
       this.fields
     );
-  }
-}
-
-export class FormDirector {
-  makeUserSignIn(builder) {
-    builder
-      .setFields([
-        { name: "Username", rules: "required|min:6|max:15" },
-        { name: "Password", rules: "required|min6", type: "password" },
-      ])
-      .setSubmit("Sign in");
   }
 }
